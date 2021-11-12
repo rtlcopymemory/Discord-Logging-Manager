@@ -6,6 +6,12 @@ const { db, ERRORS } = require("../db");
  * @param {Interaction} interaction 
  */
 async function handleLogging(interaction) {
+    let user = interaction.user;
+    if (!user.permissions.has([Permissions.FLAGS.BAN_MEMBERS])) {
+        await interaction.reply("You don't have 'BAN' permissions to use this Command!");
+        return;
+    }
+
     // Gotta check if moderator
     const serverID = interaction.guildId;
 
