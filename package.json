@@ -1,0 +1,21 @@
+{
+  "name": "Discord-Logging-Manager",
+  "version": "1.0.0",
+  "description": "Discord bot to manage Logging",
+  "main": "src/index.js",
+  "repository": "git@github.com:ThatOnePizza/Discord-Logging-Manager.git",
+  "author": "ThatOnePizza <info@protocli.me>",
+  "license": "GPL-3.0-or-later",
+  "private": false,
+  "scripts": {
+    "ci": "yarn install --frozen-lockfile",
+    "start": "node ."
+  },
+  "dependencies": {
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "discord-api-types": "^0.24.0",
+    "discord.js": "^13.3.1",
+    "dotenv": "^10.0.0",
+    "sqlite3": "^5.0.2"
+  }
+}
