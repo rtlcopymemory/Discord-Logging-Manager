@@ -18,34 +18,45 @@ async function handleLogging(interaction) {
                 return;
             }
 
-            let error = -1;
-            db.get("SELECT * FROM servers WHERE serverID = ?", [serverID], (err, row) => {
+            db.get("SELECT * FROM servers WHERE serverID = ?", [serverID], async (err, row) => {
                 if (!!err) {
-                    error = ERRORS.GENERIC;
+                    await interaction.reply("An error has accured");
                     return;
                 }
 
                 if (!!row) {
-                    error = ERRORS.DUPLICATE;
+                    await interaction.reply("Server already existing. Use remove");
+                    return;
                 }
+
+                var stmt = db.prepare("INSERT INTO servers (serverID, channelID) VALUES (?, ?)");
+                stmt.run(serverID, channel.id);
+                stmt.finalize();
+
+                await interaction.reply(`Channel <#${channel.id}> set`);
             })
 
-            if (error === ERRORS.GENERIC) {
-                await interaction.reply("An error has accured");
-                return;
-            } else if (error === ERRORS.DUPLICATE) {
-                await interaction.reply("Server already existing. Use remove");
-                return;
-            }
-
-            var stmt = db.prepare("INSERT INTO servers (serverID, channelID) VALUES (?, ?)");
-            stmt.run(serverID, channel.id);
-            stmt.finalize();
-
-            await interaction.reply(`Channel <#${channel.id}> set`);
             break;
+
         case "remove":
-            await interaction.reply("You used remove");
+            db.get("SELECT * FROM servers WHERE serverID = ?", [serverID], async (err, row) => {
+                if (!!err) {
+                    await interaction.reply("An error has accured");
+                    return;
+                }
+
+                if (!row) {
+                    await interaction.reply("Trying to remove a server not in the Database");
+                    return;
+                }
+
+                var stmt = db.prepare("DELETE FROM servers WHERE serverID = ?");
+                stmt.run(serverID);
+                stmt.finalize();
+
+                await interaction.reply("Channel Removed Successfully");
+            })
+
             break;
     }
 }

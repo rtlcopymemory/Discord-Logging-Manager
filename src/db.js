@@ -8,7 +8,8 @@ db.serialize(function () {
 
 const ERRORS = {
     GENERIC: 0,
-    DUPLICATE: 1
+    DUPLICATE: 1,
+    NOT_FOUND: 2
 }
 
 Object.freeze(ERRORS);

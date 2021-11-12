@@ -11,5 +11,4 @@ module.exports = new SlashCommandBuilder()
     .addSubcommand(subcommand =>
         subcommand
             .setName('remove')
-            .setDescription('Unsets the channel dedicated to logging')
-            .addChannelOption(option => option.setName('target').setDescription('The channel')));
+            .setDescription('Unsets the channel dedicated to logging'));
