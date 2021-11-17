@@ -1,5 +1,15 @@
 const { Client, Intents } = require('discord.js');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({
+    intents: [
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MEMBERS,
+        Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+        Intents.FLAGS.GUILD_WEBHOOKS,
+        Intents.FLAGS.GUILD_PRESENCES,
+        Intents.FLAGS.GUILD_MESSAGE_TYPING
+    ]
+});
 
 require('dotenv').config();
 
@@ -13,6 +23,7 @@ const { registerGuildCommands } = require('./commands/commands');
 const { onGuildLogging } = require('./checks');
 const channelDeleteHandler = require('./eventHandlers/channelDelete');
 const channelUpdateHandler = require('./eventHandlers/channelUpdate');
+const deleteBulkHandler = require('./eventHandlers/messageDeleteBulk');
 
 client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -50,7 +61,7 @@ client.on('messageDelete', async message => {
 });
 
 client.on('messageDeleteBulk', async messages => {
-    onGuildLogging(messages.last().guild, async (logChannel) => { });
+    onGuildLogging(messages.last().guild, async (logChannel) => { deleteBulkHandler(messages, logChannel) });
 });
 
 client.on('messageReactionAdd', async (messageReaction, user) => {
