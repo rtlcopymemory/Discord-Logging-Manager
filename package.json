@@ -1,5 +1,5 @@
 {
-  "name": "Discord-Logging-Manager",
+  "name": "discord-logging-manager",
   "version": "1.0.0",
   "description": "Discord bot to manage Logging",
   "main": "src/index.js",
