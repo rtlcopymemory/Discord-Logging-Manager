@@ -1,4 +1,5 @@
 const { Interaction, Channel } = require("discord.js");
+const { checkPerms } = require("../checks");
 const { db } = require("../db");
 
 /**
