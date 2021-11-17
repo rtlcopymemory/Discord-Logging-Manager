@@ -1,4 +1,4 @@
-const { Interaction, Channel } = require("discord.js");
+const { Interaction, TextChannel } = require("discord.js");
 const { checkPerms } = require("../checks");
 const { db } = require("../db");
 
@@ -16,10 +16,16 @@ async function handleLogging(interaction) {
     // Gotta check if moderator
     const serverID = interaction.guildId;
 
+    /** @type {TextChannel} channel */
+    let channel = interaction.options.getChannel('target');
+
+    if (!channel || !channel.isText()) {
+        await interaction.reply("Please specify a text channel!");
+        return;
+    }
+
     switch (interaction.options.getSubcommand()) {
         case "set":
-            /** @type {Channel} channel */
-            let channel = interaction.options.getChannel('target');
             if (!channel) {
                 await interaction.reply("Channel not valid");
                 return;
