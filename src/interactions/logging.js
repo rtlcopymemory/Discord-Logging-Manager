@@ -1,5 +1,5 @@
 const { Interaction, Channel } = require("discord.js");
-const { db, ERRORS } = require("../db");
+const { db } = require("../db");
 
 /**
  * 
