@@ -15,7 +15,7 @@ async function channelDeleteHandler(channel, logChannel) {
         .setColor(parseInt("ff0000", 16))
         .setDescription(`A Channel has been deleted from this server`)
         .addField(`Channel Name`, channel.name, true)
-        .addField(`Channel Topic`, channel.topic, true)
+        .addField(`Channel Topic`, `${!!channel.topic && channel.topic.length > 0 ? channel.topic : "[[EMPTY]]"}`, true)
         .addField(`Channel Type`, channel.type, true);
 
     await logChannel.send({ content: `${channel.id}`, embeds: [embed] });

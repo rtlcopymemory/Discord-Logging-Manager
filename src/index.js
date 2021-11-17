@@ -12,6 +12,7 @@ const { handleInteractions } = require("./interactions/interactions");
 const { registerGuildCommands } = require('./commands/commands');
 const { onGuildLogging } = require('./checks');
 const channelDeleteHandler = require('./eventHandlers/channelDelete');
+const channelUpdateHandler = require('./eventHandlers/channelUpdate');
 
 client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -37,7 +38,7 @@ client.on('channelDelete', async channel => {
 });
 
 client.on('channelUpdate', async (oldChannel, newChannel) => {
-    onGuildLogging(newChannel.guild, async (logChannel) => { });
+    onGuildLogging(newChannel.guild, async (logChannel) => { await channelUpdateHandler(oldChannel, newChannel, logChannel); });
 });
 
 client.on('guildMemberUpdate', async (oldMember, newMember) => {
@@ -86,6 +87,10 @@ client.on('threadMemberUpdate', async (oldMember, newMember) => {
 
 client.on('webhookUpdate', async channel => {
     onGuildLogging(channel.guild, async (logChannel) => { });
+});
+
+client.on('error', async error => {
+    console.error(` [ERROR] An error has occured:\n${error}`);
 });
 
 client.login(process.env.TOKEN);
