@@ -6,8 +6,8 @@ const { db } = require("../db");
  * @param {Interaction} interaction 
  */
 async function handleLogging(interaction) {
-    let user = interaction.user;
-    if (!user.permissions.has([Permissions.FLAGS.BAN_MEMBERS])) {
+    let user = interaction.member;
+    if (!checkPerms(user)) {
         await interaction.reply("You don't have 'BAN' permissions to use this Command!");
         return;
     }

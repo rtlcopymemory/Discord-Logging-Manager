@@ -1,14 +1,17 @@
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const logging = require('./logging');
+const exclude = require('./exclude');
 
 /** iterates through all commands and registers them for the serverID passed
  * 
  * @param {String} guild_id 
  */
 function registerGuildCommands(guild_id) {
+    // ADD NEW COMMANDS HERE
     let commands = [
-        logging
+        logging,
+        exclude
     ];
 
     sendRequest(commands, guild_id);
