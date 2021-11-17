@@ -3,13 +3,12 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 require('dotenv').config();
 
-const { handleInteractions } = require("./interactions/interactions");
-
 if (!process.env.TOKEN) {
     console.error(' [ ERROR ] Token is Empty! Configure your environment')
     process.exit(-1);
 }
 
+const { handleInteractions } = require("./interactions/interactions");
 const { registerGuildCommands } = require('./commands/commands');
 const { onGuildLogging } = require('./checks');
 const channelDeleteHandler = require('./eventHandlers/channelDelete');
