@@ -104,4 +104,9 @@ client.on('error', async error => {
     console.error(` [ERROR] An error has occured:\n${error}`);
 });
 
+client.on('guildCreate', async guild => {
+    // A.
+    registerGuildCommands(guild.id);
+});
+
 client.login(process.env.TOKEN);
