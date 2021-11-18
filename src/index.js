@@ -21,9 +21,7 @@ if (!process.env.TOKEN) {
 const { handleInteractions } = require("./interactions/interactions");
 const { registerGuildCommands } = require('./commands/commands');
 const { onGuildLogging } = require('./checks');
-const channelDeleteHandler = require('./eventHandlers/channelDelete');
-const channelUpdateHandler = require('./eventHandlers/channelUpdate');
-const deleteBulkHandler = require('./eventHandlers/messageDeleteBulk');
+const handlers = require('./eventHandlers/handlers');
 
 client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -45,11 +43,11 @@ client.on('interactionCreate', async interaction => {
 });
 
 client.on('channelDelete', async channel => {
-    onGuildLogging(channel.guild, async (logChannel) => { await channelDeleteHandler(channel, logChannel); });
+    onGuildLogging(channel.guild, async (logChannel) => { await handlers.channelDeleteHandler(channel, logChannel); });
 });
 
 client.on('channelUpdate', async (oldChannel, newChannel) => {
-    onGuildLogging(newChannel.guild, async (logChannel) => { await channelUpdateHandler(oldChannel, newChannel, logChannel); });
+    onGuildLogging(newChannel.guild, async (logChannel) => { await handlers.channelUpdateHandler(oldChannel, newChannel, logChannel); });
 });
 
 client.on('guildMemberUpdate', async (oldMember, newMember) => {
@@ -61,7 +59,7 @@ client.on('messageDelete', async message => {
 });
 
 client.on('messageDeleteBulk', async messages => {
-    onGuildLogging(messages.last().guild, async (logChannel) => { deleteBulkHandler(messages, logChannel) });
+    onGuildLogging(messages.last().guild, async (logChannel) => { handlers.deleteBulkHandler(messages, logChannel) });
 });
 
 client.on('messageReactionAdd', async (messageReaction, user) => {
