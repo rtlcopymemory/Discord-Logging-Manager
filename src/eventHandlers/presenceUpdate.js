@@ -37,7 +37,7 @@ async function presenceUpdateHandler(oldPresence, newPresence, logChannels) {
         .addField(`Activities`, newActivities, true)
         .addField(`User`, `<@${newPresence.member.id}>`, true);
 
-    await logChannels.messages
+    await logChannels.users
         .send({ content: `${newPresence.member.id}`, embeds: [oldEmbed, newEmbed] })
         .catch((err) => { console.error(`Error sending message: ${err}`) });
 }
