@@ -22,6 +22,7 @@ Here's a list of what events are getting logged and to which channel category
 ### User
 - `guildMemberUpdate`
 - `presenceUpdate`
+- `voiceStateUpdate`
 
 ### Messages
 - `messageDelete`

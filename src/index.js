@@ -98,6 +98,10 @@ client.on('webhookUpdate', async channel => {
     onGuildLogging(channel.guild, async (logChannels) => { });
 });
 
+client.on('voiceStateUpdate', async (oldState, newState) => {
+    onGuildLogging(newState.guild, async (logChannels) => { });
+});
+
 client.on('error', async error => {
     console.error(` [ERROR] An error has occured:\n${error}`);
 });
