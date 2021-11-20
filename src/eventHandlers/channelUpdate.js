@@ -4,12 +4,15 @@ const { MessageEmbed, TextChannel, VoiceChannel, NewsChannel } = require("discor
  * 
  * @param {TextChannel|VoiceChannel|NewsChannel} oldChannel 
  * @param {TextChannel|VoiceChannel|NewsChannel} newChannel 
- * @param {TextChannel} logChannel
+ * @param {TextChannel} logChannels
+ * @param {TextChannel} logChannels.server
+ * @param {TextChannel} logChannels.users
+ * @param {TextChannel} logChannels.messages
  */
-async function channelUpdateHandler(oldChannel, newChannel, logChannel) {
-    if (!oldChannel || !newChannel || !logChannel) return;
+async function channelUpdateHandler(oldChannel, newChannel, logChannels) {
+    if (!oldChannel || !newChannel || !logChannels.server) return;
 
-    if (!logChannel.isText()) return;
+    if (!logChannels.server.isText()) return;
 
     const oldEmbed = new MessageEmbed()
         .setTitle("Channel Updated - BEFORE")
@@ -25,7 +28,7 @@ async function channelUpdateHandler(oldChannel, newChannel, logChannel) {
         .addField(`Channel Name`, newChannel.name, true)
         .addField(`Channel Topic`, `${!!newChannel.topic && newChannel.topic.length > 0 ? newChannel.topic : "[[EMPTY]]"}`, true);
 
-    await logChannel.send({ content: `${newChannel.id}`, embeds: [oldEmbed, newEmbed] });
+    await logChannels.server.send({ content: `${newChannel.id}`, embeds: [oldEmbed, newEmbed] });
 }
 
 module.exports = channelUpdateHandler;

@@ -6,10 +6,13 @@ const { tmpDir } = require("../consts");
 /** Handles channel update event
  * 
  * @param {Collection<string, Message<boolean> | PartialMessage>} messages 
- * @param {TextChannel} logChannel
+ * @param {TextChannel} logChannels
+ * @param {TextChannel} logChannels.server
+ * @param {TextChannel} logChannels.users
+ * @param {TextChannel} logChannels.messages
  */
-async function deleteBulkHandler(messages, logChannel) {
-    if (!messages || !logChannel) return;
+async function deleteBulkHandler(messages, logChannels) {
+    if (!messages || !logChannels.messages) return;
 
     const channel = messages.last().channel;
 
@@ -51,7 +54,7 @@ async function deleteBulkHandler(messages, logChannel) {
             .setColor(parseInt("ff0000", 16))
             .setDescription(`Bulk Deletion in <#${channel.id}>`)
 
-        await logChannel
+        await logChannels.messages
             .send({ content: `${channel.id}`, embeds: [embed], files: [attachment] })
             .catch((err) => { console.error(`Error sending message: ${err}`) })
             .finally(() => {

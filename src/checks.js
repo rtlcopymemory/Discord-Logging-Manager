@@ -22,20 +22,41 @@ function checkPerms(user) {
 async function onGuildLogging(guild, callback) {
     if (!guild || !callback) return;
 
-    db.get("SELECT channelID FROM servers WHERE serverID = ? AND channelID <> '' AND channelID IS NOT Null", [guild.id], async (err, row) => {
+    db.get("SELECT chServerID, chUserID, chMessageID FROM servers WHERE serverID = ?", [guild.id], async (err, row) => {
         if (!!err) {
             console.error(`Error in the SQL: ${err}`);
             return;
         }
 
-        if (!row) {
-            // Row doesn't exist = there's no channel associated
+        if (row == null || (row.chServerID === '' && row.chUserID === '' && row.chMessageID === '')) {
+            // Row doesn't exist = there's no channels associated
+            // All channels are empty strings = nothing set
             return;
         }
 
-        channel = guild.channels.cache.get(row.channelID) || await guild.channels.fetch(row.channelID);
-        await callback(channel);
+        let channels = await fetchChannels(guild, row);
+        await callback(channels);
     })
+}
+
+/**
+ * 
+ * @param {Guild} guild 
+ * @param {*} row 
+ */
+async function fetchChannels(guild, row) {
+    let channels = {};
+
+    if (row.chServerID !== '')
+        channels.server = await guild.channels.fetch(row.chServerID);
+
+    if (row.chUserID !== '')
+        channels.users = await guild.channels.fetch(row.chUserID);
+
+    if (row.chMessageID !== '')
+        channels.messages = await guild.channels.fetch(row.chMessageID);
+
+    return channels;
 }
 
 module.exports = {

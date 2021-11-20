@@ -14,7 +14,7 @@ const client = new Client({
 require('dotenv').config();
 
 if (!process.env.TOKEN) {
-    console.error(' [ ERROR ] Token is Empty! Configure your environment')
+    console.error(' [ ERROR ] Token is Empty! Configure your environment');
     process.exit(-1);
 }
 
@@ -43,59 +43,59 @@ client.on('interactionCreate', async interaction => {
 });
 
 client.on('channelDelete', async channel => {
-    onGuildLogging(channel.guild, async (logChannel) => { await handlers.channelDeleteHandler(channel, logChannel); });
+    onGuildLogging(channel.guild, async (logChannels) => { await handlers.channelDeleteHandler(channel, logChannels); });
 });
 
 client.on('channelUpdate', async (oldChannel, newChannel) => {
-    onGuildLogging(newChannel.guild, async (logChannel) => { await handlers.channelUpdateHandler(oldChannel, newChannel, logChannel); });
+    onGuildLogging(newChannel.guild, async (logChannels) => { await handlers.channelUpdateHandler(oldChannel, newChannel, logChannels); });
 });
 
 client.on('guildMemberUpdate', async (oldMember, newMember) => {
-    onGuildLogging(newMember.guild, async (logChannel) => { });
+    onGuildLogging(newMember.guild, async (logChannels) => { });
 });
 
 client.on('messageDelete', async message => {
-    onGuildLogging(message.guild, async (logChannel) => { });
+    onGuildLogging(message.guild, async (logChannels) => { });
 });
 
 client.on('messageDeleteBulk', async messages => {
-    onGuildLogging(messages.last().guild, async (logChannel) => { handlers.deleteBulkHandler(messages, logChannel) });
+    onGuildLogging(messages.last().guild, async (logChannels) => { handlers.deleteBulkHandler(messages, logChannels) });
 });
 
 client.on('messageReactionAdd', async (messageReaction, user) => {
-    onGuildLogging(messageReaction.message.guild, async (logChannel) => { });
+    onGuildLogging(messageReaction.message.guild, async (logChannels) => { });
 });
 
 client.on('messageReactionRemove', async (messageReaction, user) => {
-    onGuildLogging(messageReaction.message.guild, async (logChannel) => { });
+    onGuildLogging(messageReaction.message.guild, async (logChannels) => { });
 });
 
 client.on('messageReactionRemoveAll', async (message, reactions) => {
-    onGuildLogging(message.guild, async (logChannel) => { });
+    onGuildLogging(message.guild, async (logChannels) => { });
 });
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {
-    onGuildLogging(newMessage.guild, async (logChannel) => { });
+    onGuildLogging(newMessage.guild, async (logChannels) => { });
 });
 
 client.on('presenceUpdate', async (oldPresence, newPresence) => {
-    onGuildLogging(newPresence.guild, async (logChannel) => { });
+    onGuildLogging(newPresence.guild, async (logChannels) => { });
 });
 
 client.on('threadCreate', async thread => {
-    onGuildLogging(thread.guild, async (logChannel) => { });
+    onGuildLogging(thread.guild, async (logChannels) => { });
 });
 
 client.on('threadMembersUpdate', async (oldMembers, newMembers) => {
-    onGuildLogging(newMembers.last().guildMember.guild, async (logChannel) => { });
+    onGuildLogging(newMembers.last().guildMember.guild, async (logChannels) => { });
 });
 
 client.on('threadMemberUpdate', async (oldMember, newMember) => {
-    onGuildLogging(newMember.guildMember.guild, async (logChannel) => { });
+    onGuildLogging(newMember.guildMember.guild, async (logChannels) => { });
 });
 
 client.on('webhookUpdate', async channel => {
-    onGuildLogging(channel.guild, async (logChannel) => { });
+    onGuildLogging(channel.guild, async (logChannels) => { });
 });
 
 client.on('error', async error => {
