@@ -37,7 +37,7 @@ async function memberUpdateHandler(oldMember, newMember, logChannels) {
         .addField(`Member Permissions`, newPermissions, true)
         .setImage(newMember.avatarURL());
 
-    await logChannels.server.send({ content: `${newMember.id}`, embeds: [oldEmbed, newEmbed] });
+    await logChannels.users.send({ content: `${newMember.id}`, embeds: [oldEmbed, newEmbed] });
 }
 
 module.exports = memberUpdateHandler;
