@@ -25,7 +25,7 @@ async function threadCreateHandler(thread, logChannels) {
         .addField(`Parent Channel`, `<#${channel.id}>`, true)
         .addField(`Thread topic`, thread.name, true);
 
-    await logChannels.messages
+    await logChannels.server
         .send({ content: `${thread.ownerId}`, embeds: [embed] })
         .catch((err) => { console.error(`Error sending message: ${err}`) });
 }
