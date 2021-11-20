@@ -72,7 +72,7 @@ client.on('messageDeleteBulk', async messages => {
 // });
 
 client.on('messageReactionRemove', async (messageReaction, user) => {
-    onGuildLogging(messageReaction.message.guild, async (logChannels) => { });
+    onGuildLogging(messageReaction.message.guild, async (logChannels) => handlers.reactionRemoveHandler(messageReaction, user, logChannels));
 });
 
 client.on('messageReactionRemoveAll', async (message, reactions) => {
