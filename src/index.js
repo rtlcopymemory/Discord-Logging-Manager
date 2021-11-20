@@ -22,6 +22,7 @@ const { handleInteractions } = require("./interactions/interactions");
 const { registerGuildCommands } = require('./commands/commands');
 const { onGuildLogging } = require('./checks');
 const handlers = require('./eventHandlers/handlers');
+const messageDeleteHandler = require('./eventHandlers/messageDelete');
 
 client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`);
