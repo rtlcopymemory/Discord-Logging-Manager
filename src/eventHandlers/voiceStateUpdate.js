@@ -30,7 +30,7 @@ async function voiceStateUpdateHandler(oldState, newState, logChannels) {
         .addField(`Mute`, newState.mute, true)
         .addField(`User`, `<@${newState.member.id}>`, true);
 
-    await logChannels.messages
+    await logChannels.users
         .send({ content: `${newState.member.id}`, embeds: [oldEmbed, newEmbed] })
         .catch((err) => { console.error(`Error sending message: ${err}`) });
 }
