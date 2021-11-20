@@ -17,7 +17,8 @@ yarn start
 ```
 
 ## Scopes
-This bot needs both the `bot` and the `applications.commands` scopes when cerating an invite!
+This bot needs both the `bot` and the `applications.commands` scopes when cerating an invite!  
+Suggested permissions: `139586817088`
 
 ## Commands
 - `logging <set_server/set_users/set_messages/remove> <channel>`: Sets or remove channels where the bot will post the logs
