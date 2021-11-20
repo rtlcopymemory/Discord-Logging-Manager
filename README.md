@@ -15,8 +15,6 @@ Here's a list of what events are getting logged and to which channel category
 - `channelDelete`
 - `channelUpdate`
 - `threadCreate`
-- `threadMembersUpdate`
-- `threadMemberUpdate`
 - `webhookUpdate`
 
 ### User

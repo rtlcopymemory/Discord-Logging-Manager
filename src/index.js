@@ -86,6 +86,7 @@ client.on('threadCreate', async thread => {
     onGuildLogging(thread.guild, async (logChannels) => { });
 });
 
+/* Doubtful it's useful
 client.on('threadMembersUpdate', async (oldMembers, newMembers) => {
     onGuildLogging(newMembers.last().guildMember.guild, async (logChannels) => { });
 });
@@ -93,6 +94,7 @@ client.on('threadMembersUpdate', async (oldMembers, newMembers) => {
 client.on('threadMemberUpdate', async (oldMember, newMember) => {
     onGuildLogging(newMember.guildMember.guild, async (logChannels) => { });
 });
+*/
 
 client.on('webhookUpdate', async channel => {
     onGuildLogging(channel.guild, async (logChannels) => { });
