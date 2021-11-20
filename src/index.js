@@ -63,9 +63,13 @@ client.on('messageDeleteBulk', async messages => {
     onGuildLogging(messages.last().guild, async (logChannels) => handlers.deleteBulkHandler(messages, logChannels));
 });
 
-client.on('messageReactionAdd', async (messageReaction, user) => {
-    onGuildLogging(messageReaction.message.guild, async (logChannels) => { });
-});
+// Not implemented: Reactions are often used to give roles and the addition of one
+// doesn't seem like an issue. If someone is using an inappropriete reaction they will
+// try to remove it instantly or their nickname would be visible. Therefore
+// We are only logging the removal of one. :D
+// client.on('messageReactionAdd', async (messageReaction, user) => {
+//     onGuildLogging(messageReaction.message.guild, async (logChannels) => { });
+// });
 
 client.on('messageReactionRemove', async (messageReaction, user) => {
     onGuildLogging(messageReaction.message.guild, async (logChannels) => { });
