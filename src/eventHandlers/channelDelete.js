@@ -1,4 +1,5 @@
 const { MessageEmbed, TextChannel, VoiceChannel, NewsChannel, Channel } = require("discord.js");
+const { channelExcluded } = require("../checks");
 
 /** Handles channel delete event
  * 
@@ -10,6 +11,8 @@ const { MessageEmbed, TextChannel, VoiceChannel, NewsChannel, Channel } = requir
  */
 async function channelDeleteHandler(channel, logChannels) {
     if (!channel || !logChannels.server) return;
+
+    if (await channelExcluded(channel)) return;
 
     if (!logChannels.server.isText()) return;
 

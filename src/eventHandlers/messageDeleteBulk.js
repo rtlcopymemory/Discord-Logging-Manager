@@ -2,6 +2,7 @@ const fs = require('fs');
 const { default: Collection } = require("@discordjs/collection");
 const { MessageEmbed, TextChannel, Message, PartialMessage, MessageAttachment } = require("discord.js");
 const { tmpDir } = require("../consts");
+const { channelExcluded } = require('../checks');
 
 /** Handles channel update event
  * 
@@ -12,7 +13,9 @@ const { tmpDir } = require("../consts");
  * @param {TextChannel} logChannels.messages
  */
 async function deleteBulkHandler(messages, logChannels) {
-    if (!messages || !logChannels.messages) return;
+    if (messages == null || logChannels.messages == null) return;
+
+    if (await channelExcluded(messages.last().channel)) return;
 
     const channel = messages.last().channel;
 

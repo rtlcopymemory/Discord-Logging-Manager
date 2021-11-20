@@ -1,4 +1,5 @@
 const { MessageEmbed, TextChannel, VoiceChannel, NewsChannel } = require("discord.js");
+const { channelExcluded } = require("../checks");
 
 /** Handles channel update event
  * 
@@ -11,6 +12,8 @@ const { MessageEmbed, TextChannel, VoiceChannel, NewsChannel } = require("discor
  */
 async function channelUpdateHandler(oldChannel, newChannel, logChannels) {
     if (!oldChannel || !newChannel || !logChannels.server) return;
+
+    if (await channelExcluded(newChannel)) return;
 
     if (!logChannels.server.isText()) return;
 

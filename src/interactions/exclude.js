@@ -35,7 +35,7 @@ async function handleExclude(interaction) {
             stmt.finalize();
         }
 
-        await interaction.reply({ content: `Channel ${adding ? "set for" : "removed from"} logging`, ephemeral: true });
+        await interaction.reply({ content: `Channel ${adding ? "removed from" : "set for"} logging`, ephemeral: true });
     })
 }
 

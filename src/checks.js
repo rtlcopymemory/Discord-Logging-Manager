@@ -1,4 +1,4 @@
-const { GuildMember, Permissions, Guild } = require("discord.js");
+const { GuildMember, Permissions, Guild, TextChannel, VoiceChannel, NewsChannel } = require("discord.js");
 const { db } = require("./db");
 
 /**
@@ -59,7 +59,27 @@ async function fetchChannels(guild, row) {
     return channels;
 }
 
+/** Checks if the channel is in the exclusion list  
+ * 
+ * @param {TextChannel|VoiceChannel|NewsChannel} channel 
+ * @returns {Promise<boolean, any>}
+ */
+async function channelExcluded(channel) {
+    return new Promise((resolve, reject) => {
+        if (channel == null) reject();
+
+        db.get("SELECT * FROM exclusions WHERE channelID = ? AND serverID = ?", [channel.id, channel.guildId], (err, row) => {
+            // Technically the server ID isn't exactly needed here as Discord's channel IDs are already unique even cross-server
+            if (err != null)
+                reject(err);
+
+            resolve(row != null);
+        });
+    })
+}
+
 module.exports = {
     checkPerms,
-    onGuildLogging
+    onGuildLogging,
+    channelExcluded
 }
