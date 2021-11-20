@@ -14,8 +14,8 @@ async function memberUpdateHandler(oldMember, newMember, logChannels) {
 
     if (!logChannels.server.isText()) return;
 
-    let oldPermissions = oldMember.permissions.toArray().reduce((acc, curr) => acc + ", " + curr, "");
-    let newPermissions = newMember.permissions.toArray().reduce((acc, curr) => acc + ", " + curr, "");
+    let oldPermissions = oldMember.permissions.toArray().reduce((acc, curr) => acc + ", " + curr);
+    let newPermissions = newMember.permissions.toArray().reduce((acc, curr) => acc + ", " + curr);
 
     const oldEmbed = new MessageEmbed()
         .setTitle("Member Updated - BEFORE")
