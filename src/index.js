@@ -75,10 +75,6 @@ client.on('messageReactionRemove', async (messageReaction, user) => {
     onGuildLogging(messageReaction.message.guild, async (logChannels) => handlers.reactionRemoveHandler(messageReaction, user, logChannels));
 });
 
-client.on('messageReactionRemoveAll', async (message, reactions) => {
-    onGuildLogging(message.guild, async (logChannels) => { });
-});
-
 client.on('messageUpdate', async (oldMessage, newMessage) => {
     onGuildLogging(newMessage.guild, async (logChannels) => { });
 });
