@@ -51,7 +51,7 @@ client.on('channelUpdate', async (oldChannel, newChannel) => {
 });
 
 client.on('guildMemberUpdate', async (oldMember, newMember) => {
-    onGuildLogging(newMember.guild, async (logChannels) => { });
+    onGuildLogging(newMember.guild, async (logChannels) => { await memberUpdateHandler(oldMember, newMember, logChannels) });
 });
 
 client.on('messageDelete', async message => {

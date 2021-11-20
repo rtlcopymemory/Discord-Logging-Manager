@@ -7,7 +7,7 @@ const { channelExcluded } = require('../checks');
 /** Handles channel update event
  * 
  * @param {Collection<string, Message<boolean> | PartialMessage>} messages 
- * @param {TextChannel} logChannels
+ * @param {Object} logChannels
  * @param {TextChannel} logChannels.server
  * @param {TextChannel} logChannels.users
  * @param {TextChannel} logChannels.messages

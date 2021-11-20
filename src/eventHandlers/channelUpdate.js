@@ -5,7 +5,7 @@ const { channelExcluded } = require("../checks");
  * 
  * @param {TextChannel|VoiceChannel|NewsChannel} oldChannel 
  * @param {TextChannel|VoiceChannel|NewsChannel} newChannel 
- * @param {TextChannel} logChannels
+ * @param {Object} logChannels
  * @param {TextChannel} logChannels.server
  * @param {TextChannel} logChannels.users
  * @param {TextChannel} logChannels.messages
