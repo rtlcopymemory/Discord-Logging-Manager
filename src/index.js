@@ -75,7 +75,7 @@ client.on('messageReactionRemove', async (messageReaction, user) => {
 });
 
 client.on('messageUpdate', async (oldMessage, newMessage) => {
-    onGuildLogging(newMessage.guild, async (logChannels) => { });
+    onGuildLogging(newMessage.guild, async (logChannels) => handlers.messageUpdateHandler(oldMessage, newMessage, logChannels));
 });
 
 client.on('presenceUpdate', async (oldPresence, newPresence) => {
