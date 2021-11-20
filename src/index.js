@@ -43,23 +43,23 @@ client.on('interactionCreate', async interaction => {
 });
 
 client.on('channelDelete', async channel => {
-    onGuildLogging(channel.guild, async (logChannels) => { await handlers.channelDeleteHandler(channel, logChannels); });
+    onGuildLogging(channel.guild, async (logChannels) => handlers.channelDeleteHandler(channel, logChannels));
 });
 
 client.on('channelUpdate', async (oldChannel, newChannel) => {
-    onGuildLogging(newChannel.guild, async (logChannels) => { await handlers.channelUpdateHandler(oldChannel, newChannel, logChannels); });
+    onGuildLogging(newChannel.guild, async (logChannels) => handlers.channelUpdateHandler(oldChannel, newChannel, logChannels));
 });
 
 client.on('guildMemberUpdate', async (oldMember, newMember) => {
-    onGuildLogging(newMember.guild, async (logChannels) => { await memberUpdateHandler(oldMember, newMember, logChannels) });
+    onGuildLogging(newMember.guild, async (logChannels) => handlers.memberUpdateHandler(oldMember, newMember, logChannels));
 });
 
 client.on('messageDelete', async message => {
-    onGuildLogging(message.guild, async (logChannels) => { });
+    onGuildLogging(message.guild, async (logChannels) => handlers.messageDeleteHandler(message, logChannels));
 });
 
 client.on('messageDeleteBulk', async messages => {
-    onGuildLogging(messages.last().guild, async (logChannels) => { handlers.deleteBulkHandler(messages, logChannels) });
+    onGuildLogging(messages.last().guild, async (logChannels) => handlers.deleteBulkHandler(messages, logChannels));
 });
 
 client.on('messageReactionAdd', async (messageReaction, user) => {
