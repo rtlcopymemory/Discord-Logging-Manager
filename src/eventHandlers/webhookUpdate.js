@@ -20,7 +20,7 @@ async function webhookUpdateHandler(channel, logChannels) {
         .addField(`Channel`, `<#${channel.id}>`, true)
         .addField(`Webhooks`, webhooks, true);
 
-    await logChannels.messages
+    await logChannels.server
         .send({ content: `${channel.id}`, embeds: [embed] })
         .catch((err) => { console.error(`Error sending message: ${err}`) });
 }
