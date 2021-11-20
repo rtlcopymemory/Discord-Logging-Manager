@@ -78,9 +78,10 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
     onGuildLogging(newMessage.guild, async (logChannels) => handlers.messageUpdateHandler(oldMessage, newMessage, logChannels));
 });
 
-client.on('presenceUpdate', async (oldPresence, newPresence) => {
-    onGuildLogging(newPresence.guild, async (logChannels) => handlers.presenceUpdateHandler(oldPresence, newPresence, logChannels));
-});
+// Disabled due to spam
+// client.on('presenceUpdate', async (oldPresence, newPresence) => {
+//     onGuildLogging(newPresence.guild, async (logChannels) => handlers.presenceUpdateHandler(oldPresence, newPresence, logChannels));
+// });
 
 client.on('threadCreate', async thread => {
     onGuildLogging(thread.guild, async (logChannels) => handlers.threadCreateHandler(thread, logChannels));
