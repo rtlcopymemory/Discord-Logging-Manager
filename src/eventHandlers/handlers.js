@@ -8,6 +8,7 @@ const messageUpdateHandler = require('./messageUpdate');
 const presenceUpdateHandler = require('./presenceUpdate');
 const threadCreateHandler = require('./threadCreate');
 const webhookUpdateHandler = require('./webhookUpdate');
+const voiceStateUpdateHandler = require('./voiceStateUpdate');
 
 module.exports = {
     channelDeleteHandler,
@@ -19,5 +20,6 @@ module.exports = {
     messageUpdateHandler,
     presenceUpdateHandler,
     threadCreateHandler,
-    webhookUpdateHandler
+    webhookUpdateHandler,
+    voiceStateUpdateHandler
 }

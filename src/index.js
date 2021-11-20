@@ -101,7 +101,7 @@ client.on('webhookUpdate', async channel => {
 });
 
 client.on('voiceStateUpdate', async (oldState, newState) => {
-    onGuildLogging(newState.guild, async (logChannels) => { });
+    onGuildLogging(newState.guild, async (logChannels) => handlers.voiceStateUpdateHandler(oldState, newState, logChannels));
 });
 
 client.on('error', async error => {
