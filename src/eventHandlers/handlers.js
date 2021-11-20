@@ -7,6 +7,7 @@ const reactionRemoveHandler = require('./messageReactionRemove');
 const messageUpdateHandler = require('./messageUpdate');
 const presenceUpdateHandler = require('./presenceUpdate');
 const threadCreateHandler = require('./threadCreate');
+const webhookUpdateHandler = require('./webhookUpdate');
 
 module.exports = {
     channelDeleteHandler,
@@ -17,5 +18,6 @@ module.exports = {
     reactionRemoveHandler,
     messageUpdateHandler,
     presenceUpdateHandler,
-    threadCreateHandler
+    threadCreateHandler,
+    webhookUpdateHandler
 }

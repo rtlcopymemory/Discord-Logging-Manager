@@ -1,6 +1,21 @@
 # Discord-Logging-Manager
 Discord bot dedicated to logging user activities such as message edits, deletions, bulk deletions and more.
 
+## Running
+Install `yarn` if you don't have it already.
+
+```
+yarn ci
+```
+
+Copy `.env.example` to `.env` and add your bot's **token** and **cliend id** there.
+
+Run with
+
+```
+yarn start
+```
+
 ## Scopes
 This bot needs both the `bot` and the `applications.commands` scopes when cerating an invite!
 

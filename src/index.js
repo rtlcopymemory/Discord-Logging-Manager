@@ -97,7 +97,7 @@ client.on('threadMemberUpdate', async (oldMember, newMember) => {
 */
 
 client.on('webhookUpdate', async channel => {
-    onGuildLogging(channel.guild, async (logChannels) => { });
+    onGuildLogging(channel.guild, async (logChannels) => handlers.webhookUpdateHandler(channel, logChannels));
 });
 
 client.on('voiceStateUpdate', async (oldState, newState) => {
