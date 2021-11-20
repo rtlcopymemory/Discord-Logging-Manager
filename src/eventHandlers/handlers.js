@@ -5,6 +5,7 @@ const memberUpdateHandler = require('./guildMemberUpdate');
 const messageDeleteHandler = require('./messageDelete');
 const reactionRemoveHandler = require('./messageReactionRemove');
 const messageUpdateHandler = require('./messageUpdate');
+const presenceUpdateHandler = require('./presenceUpdate');
 
 module.exports = {
     channelDeleteHandler,
@@ -13,5 +14,6 @@ module.exports = {
     memberUpdateHandler,
     messageDeleteHandler,
     reactionRemoveHandler,
-    messageUpdateHandler
+    messageUpdateHandler,
+    presenceUpdateHandler
 }

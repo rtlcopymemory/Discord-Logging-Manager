@@ -79,7 +79,7 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
 });
 
 client.on('presenceUpdate', async (oldPresence, newPresence) => {
-    onGuildLogging(newPresence.guild, async (logChannels) => { });
+    onGuildLogging(newPresence.guild, async (logChannels) => handlers.presenceUpdateHandler(oldPresence, newPresence, logChannels));
 });
 
 client.on('threadCreate', async thread => {
