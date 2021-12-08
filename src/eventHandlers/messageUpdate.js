@@ -21,14 +21,14 @@ async function messageUpdateHandler(oldMessage, newMessage, logChannels) {
         .setTitle("Message Edit - BEFORE")
         .setColor(parseInt("ffff00", 16))
         .setDescription(oldMessage.content)
-        .addField(`Author`, `<@${oldMessage.member.id}>`, true)
+        .addField(`Author`, `<@${oldMessage.member != null ? oldMessage.member.id : "<NULL>"}>`, true)
         .addField(`Channel`, `<#${channel.id}>`, true);
 
     const newEmbed = new MessageEmbed()
         .setTitle("Message Edit - AFTER")
         .setColor(parseInt("ffff00", 16))
         .setDescription(newMessage.content)
-        .addField(`Author`, `<@${newMessage.member.id}>`, true)
+        .addField(`Author`, `<@${newMessage.member != null ? newMessage.member.id : "<NULL>"}>`, true)
         .addField(`Channel`, `<#${channel.id}>`, true);
 
     await logChannels.messages
