@@ -20,11 +20,11 @@ async function messageDeleteHandler(message, logChannels) {
         .setTitle("Message Delete")
         .setColor(parseInt("ff0000", 16))
         .setDescription(message.content)
-        .addField(`Message Author`, `${message.member.user.username}#${message.member.user.discriminator}`, true)
+        .addField(`Message Author`, `${message.member != null ? message.member.user.username : "User not in server"}#${message.member != null ? message.member.user.discriminator : "User not in server"}`, true)
         .addField(`Channel`, `<#${channel.id}>`, true);
 
     await logChannels.messages
-        .send({ content: `${message.member.id}`, embeds: [embed] })
+        .send({ content: `${message.member != null ? message.member.id : "Cant get id of banned member"}`, embeds: [embed] })
         .catch((err) => { console.error(`Error sending message: ${err}`) });
 }
 
