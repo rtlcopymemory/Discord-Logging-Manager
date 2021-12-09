@@ -32,7 +32,7 @@ async function messageUpdateHandler(oldMessage, newMessage, logChannels) {
         .addField(`Channel`, `<#${channel.id}>`, true);
 
     await logChannels.messages
-        .send({ content: `${newMessage.member.id}`, embeds: [oldEmbed, newEmbed] })
+        .send({ content: `${newMessage.member != null ? newMessage.member.id : "Failed to get user id"}`, embeds: [oldEmbed, newEmbed] })
         .catch((err) => { console.error(`Error sending message: ${err}`) });
 }
 
